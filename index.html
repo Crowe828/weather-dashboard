@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Reset -->
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <title>Weather Dashboard</title>
+  </head>
+  <body>
+    <!-- User can search for weather reports by city using the openweathermap API. -->
+    <!-- After searching for a city, the following information is displayed: current temperature, current humidity, windspeed, uv index, and 5 day forecast. -->
+    <!-- Application uses icons to represent weather conditions. -->
+    <!-- Application stores previously searched for cities in local storage and displays them to the user. -->
+    <!-- Application loads last searched city forecast on page load. -->
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- OpenWeatherMap API -->
+    <script src="http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=e10987ffef94fe88a10c5d54823a1d23"></script>
+    <!-- Custom Script -->
+    <script src="./assets/javascript/script.js"></script>
+  </body>
+</html>

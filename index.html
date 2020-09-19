@@ -33,17 +33,74 @@
     <title>Weather Dashboard</title>
   </head>
   <body>
+    
+    
     <!-- User can search for weather reports by city using the openweathermap API. -->
+
     <!-- After searching for a city, the following information is displayed: current temperature, current humidity, windspeed, uv index, and 5 day forecast. -->
+    <div class="city"></div>
+    <div class="temp"></div>
+    <div class="humidity"></div>
+    <div class="wind"></div>
+    <div class="uvIndex"></div>
+
     <!-- Application uses icons to represent weather conditions. -->
+
     <!-- Application stores previously searched for cities in local storage and displays them to the user. -->
+
     <!-- Application loads last searched city forecast on page load. -->
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- OpenWeatherMap API -->
-    <script src="http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=e10987ffef94fe88a10c5d54823a1d23"></script>
+    <!-- AJAX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      // Personal API key
+      var APIKey = "e10987ffef94fe88a10c5d54823a1d23";
+      var queryURL =
+        "https://api.openweathermap.org/data/2.5/weather?q=orlando,us&appid=" +
+        APIKey;
+      var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=28.54&lon=-81.38"; 
+      $.ajax({
+        url: queryURL,
+        method: "GET",
+      }).then(function (weather) {
+        console.log(this.url);
+        console.log(weather);
+        // Temperature
+        // Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
+        console.log(weather.main.temp);
+        var F = (weather.main.temp - 273.15) * 1.8 + 32;
+        console.log(F);
+        var tempToday = document.querySelector(".temp");
+        tempToday.textContent = "Today's temp: " + F;
+        // Humidity
+        var hum = weather.main.humidity;
+        console.log(hum);
+        var humToday = document.querySelector(".humidity");
+        humToday.textContent = "Humidity: " + hum;
+        // Wind
+        console.log(weather.wind);
+        var windSpeed = weather.wind.speed;
+        console.log(windSpeed);
+        var windDeg = weather.wind.deg;
+        console.log(windDeg);
+        var windCurrent = document.querySelector(".wind");
+        windCurrent.textContent =
+          "Wind speed: " + windSpeed + " Wind Degree: " + windDeg;
+      });
+      $.ajax({
+        url: uvURL,
+        method: "GET",
+      }).then(function (uv) {
+        console.log(this.url);
+        console.log(uv);
+        var uv = uv.value;
+        console.log(uv);
+        var uvIndex = document.querySelector(".uvIndex");
+        uvIndex.textContent = "Today's UV Index is: " + uv;
+      })
+      
+    </script>
     <!-- Custom Script -->
-    <script src="./assets/javascript/script.js"></script>
+    <!-- <script src="./assets/javascript/script.js"></script> -->
   </body>
 </html>

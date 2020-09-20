@@ -23,7 +23,7 @@
 
     <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap"
       rel="stylesheet"
     />
 
@@ -33,41 +33,129 @@
     <title>Weather Dashboard</title>
   </head>
   <body>
-    
-    
-    <!-- User can search for weather reports by city using the openweathermap API. -->
-
-    <!-- After searching for a city, the following information is displayed: current temperature, current humidity, windspeed, uv index, and 5 day forecast. -->
-    <div class="city"></div>
-    <div class="temp"></div>
-    <div class="humidity"></div>
-    <div class="wind"></div>
-    <div class="uvIndex"></div>
-
-    <!-- Application uses icons to represent weather conditions. -->
-
-    <!-- Application stores previously searched for cities in local storage and displays them to the user. -->
-
-    <!-- Application loads last searched city forecast on page load. -->
+    <header>
+      <!-- Jumbotron that says "weather dashboard" -->
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Weather Dashboard</h1>
+        </div>
+      </div>
+    </header>
+    <!-- All of the content will go here -->
+    <!-- row -->
+    <div class="row">
+      <!-- 2 columns, 4 and 8 -->
+      <div class="col-3">
+        <!-- left column: "search for a city" search field, history of searched for cities (from localStorage)  -->
+        <!-- User can search for weather reports by city using the openweathermap API. -->
+        <!-- Application stores previously searched for cities in local storage and displays them to the user. -->
+        <!-- Application loads last searched city forecast on page load. -->
+        <!-- Search form -->
+        <label>Search for a City:</label>
+        <form class="input-group rounded">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Search"
+          />
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-primary fas fa-search"></button>
+            <!-- <span class="input-group-text amber darken-3" id="basic-text1"
+              ><i class="fas fa-search text-grey" aria-hidden="true"></i
+            ></span> -->
+          </div>
+        </form>
+      </div>
+      <div class="col-9">
+        <!-- right column: two rows -->
+        <div class="row current-weather rounded">
+          <!-- row 1: full length container with city name, date, temp, humidity, wind, and uv-->
+          <!-- After searching for a city, the following information is displayed: current temperature, current humidity, windspeed, uv index, and 5 day forecast. -->
+          <!-- Application uses icons to represent weather conditions. -->
+          <div class="city"></div>
+          <div class="temp"></div>
+          <div class="humidity"></div>
+          <div class="wind"></div>
+          <div class="uvIndex"></div>
+        </div>
+        <div class="row">
+          <!-- row 2: 5 cards for the 5-day forecast, date, temp, and humidity in each box-->
+          <!-- Application uses icons to represent weather conditions. -->
+          <div class="card rounded" style="width: 10rem">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+            </div>
+          </div>
+          <div class="card rounded" style="width: 10rem">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+            </div>
+          </div>
+          <div class="card rounded" style="width: 10rem">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+            </div>
+          </div>
+          <div class="card rounded" style="width: 10rem">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+            </div>
+          </div>
+          <div class="card rounded" style="width: 10rem">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- AJAX -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       // Personal API key
       var APIKey = "e10987ffef94fe88a10c5d54823a1d23";
+      // Current weather
       var queryURL =
         "https://api.openweathermap.org/data/2.5/weather?q=orlando,us&appid=" +
         APIKey;
-      var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=28.54&lon=-81.38"; 
+      // UV Index
+      var uvURL =
+        "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+        APIKey +
+        "&lat=28.54&lon=-81.38";
       $.ajax({
         url: queryURL,
         method: "GET",
       }).then(function (weather) {
         console.log(this.url);
         console.log(weather);
+        // City name
+        console.log(weather.name);
+        var cityName = document.querySelector(".city");
+        cityName.textContent = weather.name;
         // Temperature
         // Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
-        console.log(weather.main.temp);
         var F = (weather.main.temp - 273.15) * 1.8 + 32;
         console.log(F);
         var tempToday = document.querySelector(".temp");
@@ -80,9 +168,7 @@
         // Wind
         console.log(weather.wind);
         var windSpeed = weather.wind.speed;
-        console.log(windSpeed);
         var windDeg = weather.wind.deg;
-        console.log(windDeg);
         var windCurrent = document.querySelector(".wind");
         windCurrent.textContent =
           "Wind speed: " + windSpeed + " Wind Degree: " + windDeg;
@@ -97,8 +183,7 @@
         console.log(uv);
         var uvIndex = document.querySelector(".uvIndex");
         uvIndex.textContent = "Today's UV Index is: " + uv;
-      })
-      
+      });
     </script>
     <!-- Custom Script -->
     <!-- <script src="./assets/javascript/script.js"></script> -->

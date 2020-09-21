@@ -54,15 +54,17 @@
         <label>Search for a City:</label>
         <form class="input-group rounded">
           <input
+            id="weather-input"
             class="form-control"
             type="text"
             placeholder="Search"
           />
           <div class="input-group-append">
-            <button type="submit" class="btn btn-primary fas fa-search"></button>
-            <!-- <span class="input-group-text amber darken-3" id="basic-text1"
-              ><i class="fas fa-search text-grey" aria-hidden="true"></i
-            ></span> -->
+            <button
+              type="submit"
+              id="weather-btn"
+              class="btn btn-primary fas fa-search"
+            ></button>
           </div>
         </form>
       </div>
@@ -77,10 +79,12 @@
           <div class="humidity"></div>
           <div class="wind"></div>
           <div class="uvIndex"></div>
+          <div class="fiveDayForecast"></div>
         </div>
         <div class="row">
           <!-- row 2: 5 cards for the 5-day forecast, date, temp, and humidity in each box-->
           <!-- Application uses icons to represent weather conditions. -->
+          <!-- Icons can also be found on OWM -->
           <div class="card rounded" style="width: 10rem">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -132,60 +136,7 @@
 
     <!-- AJAX -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-      // Personal API key
-      var APIKey = "e10987ffef94fe88a10c5d54823a1d23";
-      // Current weather
-      var queryURL =
-        "https://api.openweathermap.org/data/2.5/weather?q=orlando,us&appid=" +
-        APIKey;
-      // UV Index
-      var uvURL =
-        "http://api.openweathermap.org/data/2.5/uvi?appid=" +
-        APIKey +
-        "&lat=28.54&lon=-81.38";
-      $.ajax({
-        url: queryURL,
-        method: "GET",
-      }).then(function (weather) {
-        console.log(this.url);
-        console.log(weather);
-        // City name
-        console.log(weather.name);
-        var cityName = document.querySelector(".city");
-        cityName.textContent = weather.name;
-        // Temperature
-        // Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
-        var F = (weather.main.temp - 273.15) * 1.8 + 32;
-        console.log(F);
-        var tempToday = document.querySelector(".temp");
-        tempToday.textContent = "Today's temp: " + F;
-        // Humidity
-        var hum = weather.main.humidity;
-        console.log(hum);
-        var humToday = document.querySelector(".humidity");
-        humToday.textContent = "Humidity: " + hum;
-        // Wind
-        console.log(weather.wind);
-        var windSpeed = weather.wind.speed;
-        var windDeg = weather.wind.deg;
-        var windCurrent = document.querySelector(".wind");
-        windCurrent.textContent =
-          "Wind speed: " + windSpeed + " Wind Degree: " + windDeg;
-      });
-      $.ajax({
-        url: uvURL,
-        method: "GET",
-      }).then(function (uv) {
-        console.log(this.url);
-        console.log(uv);
-        var uv = uv.value;
-        console.log(uv);
-        var uvIndex = document.querySelector(".uvIndex");
-        uvIndex.textContent = "Today's UV Index is: " + uv;
-      });
-    </script>
     <!-- Custom Script -->
-    <!-- <script src="./assets/javascript/script.js"></script> -->
+    <script src="./assets/javascript/script.js"></script>
   </body>
 </html>

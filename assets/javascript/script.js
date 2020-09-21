@@ -16,6 +16,7 @@ $(document).ready(function () {
     var cityInput = $("#weather-input").val().trim();
     console.log(cityInput);
     currentWeather(cityInput);
+    forecast(cityInput);
   });
 
   //   Grabs the city name, current temp, humidity, wind speed/degree, and UV index
@@ -87,6 +88,55 @@ $(document).ready(function () {
         var uvIndex = document.querySelector(".uvIndex");
         uvIndex.textContent = "Today's UV Index is: " + uv;
       });
+    });
+  }
+  // Function for the five-day forecast
+  function forecast(city) {
+    // URL for the OWM five-day forecast API
+    var forecastURL =
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
+      city +
+      "&units=imperial&appid=" +
+      APIKey;
+
+    // Get the info from the API
+    $.ajax({
+      url: forecastURL,
+      method: "GET",
+    }).then(function (forecast) {
+      console.log(this.url);
+      console.log(forecast);
+
+      // After user enters a city, the temperature and humidity will be shown for the next five days
+      // Day 1
+      var dayOne = forecast.list[4];
+      console.log(dayOne);
+      console.log(dayOne.main.temp);
+      console.log(dayOne.main.humidity);
+
+      // Day 2
+      var dayTwo = forecast.list[12];
+      console.log(dayTwo);
+      console.log(dayTwo.main.temp);
+      console.log(dayTwo.main.humidity);
+
+      // Day 3
+      var dayThree = forecast.list[20];
+      console.log(dayThree);
+      console.log(dayThree.main.temp);
+      console.log(dayThree.main.humidity);
+
+      // Day 4
+      var dayFour = forecast.list[28];
+      console.log(dayFour);
+      console.log(dayFour.main.temp);
+      console.log(dayFour.main.humidity);
+
+      // Day 5
+      var dayFive = forecast.list[36];
+      console.log(dayFive);
+      console.log(dayFive.main.temp);
+      console.log(dayFive.main.humidity);
     });
   }
 });

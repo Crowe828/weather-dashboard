@@ -10,7 +10,7 @@
 
 // Integrating moment.js to use their date features
 console.log(moment().format("l"));
-
+// Personal API Key
 var APIKey = "e10987ffef94fe88a10c5d54823a1d23";
 
 // When search button is clicked, the weather is displayed for the searched for city

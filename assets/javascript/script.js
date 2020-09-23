@@ -30,6 +30,11 @@ $(document).ready(function () {
     }).then(function (weather) {
       console.log(weather);
 
+      // Weather icon
+      var icon = weather.weather[0].icon;
+      var iconURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+      console.log(iconURL);
+
       // City name
       var cityName = document.querySelector(".city");
       cityName.textContent = weather.name + " (" + moment().format("l") + ")";
@@ -73,12 +78,11 @@ $(document).ready(function () {
         method: "GET",
       }).then(function (uv) {
         var uv = uv.value.toFixed(1);
-        console.log(uv);
         var uvIndex = document.querySelector(".uvIndex");
         uvIndex.textContent = "UV Index: " + uv;
       });
     });
-  };
+  }
   // Function for the five-day forecast
   function forecast(city) {
     // URL for the OWM five-day forecast API
@@ -158,7 +162,7 @@ $(document).ready(function () {
       console.log(dayFive.main.temp.toFixed(1));
       console.log(dayFive.main.humidity);
     });
-  };
+  }
 
   // List where previously entered cities will be stored
   var cityList = document.querySelector(".city-list");

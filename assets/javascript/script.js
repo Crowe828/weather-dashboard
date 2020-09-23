@@ -1,26 +1,18 @@
-// User can search for weather reports by city using the openweathermap API.
-// After searching for a city, the following information is displayed: current temperature, current humidity, windspeed, uv index, and 5 day forecast.
-// Application uses icons to represent weather conditions.
-// Application stores previously searched for cities in local storage and displays them to the user.
-// Application loads last searched city forecast on page load.
-// OWM API display images
-// Prob build a URL with the API
-
-// Personal API key
-
-// Integrating moment.js to use their date features
-console.log(moment().format("l"));
 // Personal API Key
 var APIKey = "e10987ffef94fe88a10c5d54823a1d23";
+// Empty variable to hold cities entered in input field
+var cities = [];
 
 // When search button is clicked, the weather is displayed for the searched for city
 $(document).ready(function () {
   $("#weather-btn").on("click", function (event) {
     event.preventDefault();
     var cityInput = $("#weather-input").val().trim();
-    console.log(cityInput);
+    cities.push(cityInput);
+    console.log(cityInput.value);
     currentWeather(cityInput);
     forecast(cityInput);
+    localStorage.setItem("weather", JSON.stringify(cities));
   });
 
   //   Grabs the city name, current temp, humidity, wind speed/degree, and UV index
@@ -41,27 +33,25 @@ $(document).ready(function () {
 
       // City name
       var cityName = document.querySelector(".city");
-      cityName.textContent = weather.name + moment().format("l");
+      cityName.textContent = weather.name + " (" + moment().format("l") + ")";
 
       // Temperature
       var F = weather.main.temp.toFixed(1);
       console.log(F);
       var tempToday = document.querySelector(".temp");
-      tempToday.textContent = "Today's temp: " + F;
+      tempToday.textContent = "Temperature: " + F + " °F";
 
       // Humidity
       var hum = weather.main.humidity;
       console.log(hum);
       var humToday = document.querySelector(".humidity");
-      humToday.textContent = "Humidity: " + hum;
+      humToday.textContent = "Humidity: " + hum + "%";
 
       // Wind
       console.log(weather.wind);
       var windSpeed = weather.wind.speed.toFixed(1);
-      var windDeg = weather.wind.deg;
       var windCurrent = document.querySelector(".wind");
-      windCurrent.textContent =
-        "Wind speed: " + windSpeed + " Wind Degree: " + windDeg;
+      windCurrent.textContent = "Wind speed: " + windSpeed + " MPH";
 
       // Lat/Lon for UV Index
       var uvLat = weather.coord.lat;
@@ -83,11 +73,10 @@ $(document).ready(function () {
         url: uvURL,
         method: "GET",
       }).then(function (uv) {
-        console.log(uv);
         var uv = uv.value.toFixed(1);
         console.log(uv);
         var uvIndex = document.querySelector(".uvIndex");
-        uvIndex.textContent = "Today's UV Index is: " + uv;
+        uvIndex.textContent = "UV Index: " + uv;
       });
     });
   }
@@ -114,8 +103,8 @@ $(document).ready(function () {
       var dayTempOne = document.querySelector(".date-temp-one");
       var dayHumOne = document.querySelector(".date-hum-one");
       dayTitleOne.textContent = moment().add(1, "day").format("l");
-      dayTempOne.textContent = dayOne.main.temp.toFixed(1);
-      dayHumOne.textContent = dayOne.main.humidity;
+      dayTempOne.textContent = "Temp: " + dayOne.main.temp.toFixed(1) + " °F";
+      dayHumOne.textContent = "Humidity: " + dayOne.main.humidity + "%";
       console.log(moment().add(1, "day").format("l"));
       console.log(dayOne.main.temp.toFixed(1));
       console.log(dayOne.main.humidity);
@@ -126,8 +115,9 @@ $(document).ready(function () {
       var dayTempTwo = document.querySelector(".date-temp-two");
       var dayHumTwo = document.querySelector(".date-hum-two");
       dayTitleTwo.textContent = moment().add(2, "days").format("l");
-      dayTempTwo.textContent = dayTwo.main.temp.toFixed(1);
-      dayHumTwo.textContent = dayTwo.main.humidity;
+      dayTempTwo.textContent = "Temp: " + dayTwo.main.temp.toFixed(1);
+      +" °F";
+      dayHumTwo.textContent = "Humidity: " + dayTwo.main.humidity + "%";
       console.log(moment().add(2, "days").format("l"));
       console.log(dayTwo.main.temp.toFixed(1));
       console.log(dayTwo.main.humidity);
@@ -138,8 +128,9 @@ $(document).ready(function () {
       var dayTempThree = document.querySelector(".date-temp-three");
       var dayHumThree = document.querySelector(".date-hum-three");
       dayTitleThree.textContent = moment().add(3, "days").format("l");
-      dayTempThree.textContent = dayThree.main.temp.toFixed(1);
-      dayHumThree.textContent = dayThree.main.humidity;
+      dayTempThree.textContent =
+        "Temp: " + dayThree.main.temp.toFixed(1 + " °F");
+      dayHumThree.textContent = "Humidity: " + dayThree.main.humidity + "%";
       console.log(moment().add(3, "days").format("l"));
       console.log(dayThree.main.temp.toFixed(1));
       console.log(dayThree.main.humidity);
@@ -150,8 +141,8 @@ $(document).ready(function () {
       var dayTempFour = document.querySelector(".date-temp-four");
       var dayHumFour = document.querySelector(".date-hum-four");
       dayTitleFour.textContent = moment().add(4, "days").format("l");
-      dayTempFour.textContent = dayFour.main.temp.toFixed(1);
-      dayHumFour.textContent = dayFour.main.humidity;
+      dayTempFour.textContent = "Temp: " + dayFour.main.temp.toFixed(1) + " °F";
+      dayHumFour.textContent = "Humidity: " + dayFour.main.humidity + "%";
       console.log(moment().add(4, "days").format("l"));
       console.log(dayFour.main.temp.toFixed(1));
       console.log(dayFour.main.humidity);
@@ -162,11 +153,23 @@ $(document).ready(function () {
       var dayTempFive = document.querySelector(".date-temp-five");
       var dayHumFive = document.querySelector(".date-hum-five");
       dayTitleFive.textContent = moment().add(5, "days").format("l");
-      dayTempFive.textContent = dayFive.main.temp.toFixed(1);
-      dayHumFive.textContent = dayFive.main.humidity;
+      dayTempFive.textContent = "Temp: " + dayFive.main.temp.toFixed(1) + " °F";
+      dayHumFive.textContent = "Humidity: " + dayFive.main.humidity + "%";
       console.log(moment().add(5, "days").format("l"));
       console.log(dayFive.main.temp.toFixed(1));
       console.log(dayFive.main.humidity);
     });
   }
+
+  var cityList = document.querySelector(".city-list");
+  // var cityListItem = document.querySelector(".city-list-item");
+
+  cities = JSON.parse(localStorage.getItem("weather"));
+
+  for (let i = 0; i < cities.length; i++) {
+    var cityListEl = document.createElement("li");
+    cityListEl.textContent = cities[i];
+    cityList.append(cityListEl);
+  }
+  currentWeather(cities.pop());
 });

@@ -9,7 +9,6 @@ $(document).ready(function () {
     event.preventDefault();
     var cityInput = $("#weather-input").val().trim();
     cities.push(cityInput);
-    console.log(cityInput.value);
     currentWeather(cityInput);
     forecast(cityInput);
     localStorage.setItem("weather", JSON.stringify(cities));
@@ -79,7 +78,7 @@ $(document).ready(function () {
         uvIndex.textContent = "UV Index: " + uv;
       });
     });
-  }
+  };
   // Function for the five-day forecast
   function forecast(city) {
     // URL for the OWM five-day forecast API
@@ -159,17 +158,23 @@ $(document).ready(function () {
       console.log(dayFive.main.temp.toFixed(1));
       console.log(dayFive.main.humidity);
     });
-  }
+  };
 
+  // List where previously entered cities will be stored
   var cityList = document.querySelector(".city-list");
-  // var cityListItem = document.querySelector(".city-list-item");
 
+  // Retrieve cities from localStorage
   cities = JSON.parse(localStorage.getItem("weather"));
 
-  for (let i = 0; i < cities.length; i++) {
+  // For loop to create the list items
+  for (var i = 0; i < cities.length; i++) {
     var cityListEl = document.createElement("li");
+    cityListEl.setAttribute("class", "list-group-item");
     cityListEl.textContent = cities[i];
     cityList.append(cityListEl);
   }
+
+  // Call the two functions when the page opens
   currentWeather(cities.pop());
+  forecast(cities.pop());
 });

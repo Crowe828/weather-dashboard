@@ -35,7 +35,7 @@
   <body>
     <!-- Jumbotron that says "weather dashboard" -->
     <header class="jumbotron jumbotron-fluid">
-      <h1 class="display-4">Weather Dashboard</h1>
+      <h1>Weather Dashboard</h1>
     </header>
     <!-- All of the content will go here -->
     <div class="container">
@@ -61,77 +61,71 @@
               ></button>
             </div>
           </form>
-          <ul class="list-group city-list">
-            <!-- <li class="list-group-item city-list-item"></li> -->
-          </ul>
+          <ul class="list-group city-list"></ul>
         </div>
         <div class="col-9">
-          <div class="container">
-            <!-- right column: two rows -->
-            <div class="row current-weather rounded">
-              <!-- row 1: full length container with city name, date, temp, humidity, wind, and uv-->
-              <!-- After searching for a city, the following information is displayed: current temperature, current humidity, windspeed, uv index, and 5 day forecast. -->
-              <!-- Application uses icons to represent weather conditions. -->
-              <h3 class="city"></h3>
-              <p class="temp"></p>
-              <p class="humidity"></p>
-              <p class="wind"></p>
-              <p class="uvIndex"></p>
-            </div>
+          <!-- right column: two rows -->
+          <div class="row current-weather rounded">
+            <!-- row 1: full length container with city name, date, temp, humidity, wind, and uv-->
+            <!-- After searching for a city, the following information is displayed: current temperature, current humidity, windspeed, uv index, and 5 day forecast. -->
+            <h3 class="city"></h3>
+            <p class="temp"></p>
+            <p class="humidity"></p>
+            <p class="wind"></p>
+            <p class="uvIndex"></p>
+          </div>
 
-            <div class="row">
-              <!-- row 2: 5 cards for the 5-day forecast, date, temp, and humidity in each box-->
-              <!-- Application uses icons to represent weather conditions. -->
-              <h4 class="five-day-forecast">5-Day Forecast:</h4>
-              <div
-                class="card text-white bg-primary rounded"
-                style="width: 10rem"
-              >
-                <div class="card-body">
-                  <h5 class="card-title date-title-one"></h5>
-                  <p class="card-text date-temp-one"></p>
-                  <p class="card-text date-hum-one"></p>
-                </div>
+          <div class="row">
+            <!-- row 2: 5 cards for the 5-day forecast, date, temp, and humidity in each box-->
+            <h4 class="five-day-title">5-Day Forecast:</h4>
+            <div
+              class="card text-white bg-primary rounded"
+              style="width: 10rem"
+            >
+              <div class="card-body">
+                <h5 class="card-title date-title-one"></h5>
+                <p class="card-text date-temp-one"></p>
+                <p class="card-text date-hum-one"></p>
               </div>
-              <div
-                class="card text-white bg-primary rounded"
-                style="width: 10rem"
-              >
-                <div class="card-body">
-                  <h5 class="card-title date-title-two"></h5>
-                  <p class="card-text date-temp-two"></p>
-                  <p class="card-text date-hum-two"></p>
-                </div>
+            </div>
+            <div
+              class="card text-white bg-primary rounded"
+              style="width: 10rem"
+            >
+              <div class="card-body">
+                <h5 class="card-title date-title-two"></h5>
+                <p class="card-text date-temp-two"></p>
+                <p class="card-text date-hum-two"></p>
               </div>
-              <div
-                class="card text-white bg-primary rounded"
-                style="width: 10rem"
-              >
-                <div class="card-body">
-                  <h5 class="card-title date-title-three"></h5>
-                  <p class="card-text date-temp-three"></p>
-                  <p class="card-text date-hum-three"></p>
-                </div>
+            </div>
+            <div
+              class="card text-white bg-primary rounded"
+              style="width: 10rem"
+            >
+              <div class="card-body">
+                <h5 class="card-title date-title-three"></h5>
+                <p class="card-text date-temp-three"></p>
+                <p class="card-text date-hum-three"></p>
               </div>
-              <div
-                class="card text-white bg-primary rounded"
-                style="width: 10rem"
-              >
-                <div class="card-body">
-                  <h5 class="card-title date-title-four"></h5>
-                  <p class="card-text date-temp-four"></p>
-                  <p class="card-text date-hum-four"></p>
-                </div>
+            </div>
+            <div
+              class="card text-white bg-primary rounded"
+              style="width: 10rem"
+            >
+              <div class="card-body">
+                <h5 class="card-title date-title-four"></h5>
+                <p class="card-text date-temp-four"></p>
+                <p class="card-text date-hum-four"></p>
               </div>
-              <div
-                class="card text-white bg-primary rounded"
-                style="width: 10rem"
-              >
-                <div class="card-body">
-                  <h5 class="card-title date-title-five"></h5>
-                  <p class="card-text date-temp-five"></p>
-                  <p class="card-text date-hum-five"></p>
-                </div>
+            </div>
+            <div
+              class="card text-white bg-primary rounded"
+              style="width: 10rem"
+            >
+              <div class="card-body">
+                <h5 class="card-title date-title-five"></h5>
+                <p class="card-text date-temp-five"></p>
+                <p class="card-text date-hum-five"></p>
               </div>
             </div>
           </div>

@@ -32,12 +32,14 @@ $(document).ready(function () {
 
       // Weather icon
       var icon = weather.weather[0].icon;
-      var iconURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-      console.log(iconURL);
+      var iconURL = "http://openweathermap.org/img/wn/" + icon + ".png";
+      var iconImage = document.createElement("img");
+      iconImage.src = iconURL;
 
       // City name
       var cityName = document.querySelector(".city");
-      cityName.textContent = weather.name + " (" + moment().format("l") + ")";
+      cityName.textContent = weather.name + " (" + moment().format("l") + ") ";
+      cityName.append(iconImage);
 
       // Temperature
       var F = weather.main.temp.toFixed(1);
@@ -100,6 +102,7 @@ $(document).ready(function () {
       console.log(forecast);
 
       // After user enters a city, the temperature and humidity will be shown for the next five days
+
       // Day 1
       var dayOne = forecast.list[4];
       var dayTitleOne = document.querySelector(".date-title-one");
@@ -111,6 +114,11 @@ $(document).ready(function () {
       console.log(moment().add(1, "day").format("l"));
       console.log(dayOne.main.temp.toFixed(1));
       console.log(dayOne.main.humidity);
+
+      // Weather icon for day 1
+      var iconOne = forecast.list[4].weather[0].icon;
+      var iconOneURL = "http://openweathermap.org/img/wn/" + iconOne + ".png";
+      document.querySelector(".card-icon-one").src = iconOneURL;
 
       // Day 2
       var dayTwo = forecast.list[12];
@@ -125,6 +133,11 @@ $(document).ready(function () {
       console.log(dayTwo.main.temp.toFixed(1));
       console.log(dayTwo.main.humidity);
 
+      // Weather icon for day 2
+      var iconTwo = forecast.list[12].weather[0].icon;
+      var iconTwoURL = "http://openweathermap.org/img/wn/" + iconTwo + ".png";
+      document.querySelector(".card-icon-two").src = iconTwoURL;
+
       // Day 3
       var dayThree = forecast.list[20];
       var dayTitleThree = document.querySelector(".date-title-three");
@@ -138,6 +151,12 @@ $(document).ready(function () {
       console.log(dayThree.main.temp.toFixed(1));
       console.log(dayThree.main.humidity);
 
+      // Weather icon for day 3
+      var iconThree = forecast.list[20].weather[0].icon;
+      var iconThreeURL =
+        "http://openweathermap.org/img/wn/" + iconThree + ".png";
+      document.querySelector(".card-icon-three").src = iconThreeURL;
+
       // Day 4
       var dayFour = forecast.list[28];
       var dayTitleFour = document.querySelector(".date-title-four");
@@ -150,6 +169,11 @@ $(document).ready(function () {
       console.log(dayFour.main.temp.toFixed(1));
       console.log(dayFour.main.humidity);
 
+      // Weather icon for day 4
+      var iconFour = forecast.list[28].weather[0].icon;
+      var iconFourURL = "http://openweathermap.org/img/wn/" + iconFour + ".png";
+      document.querySelector(".card-icon-four").src = iconFourURL;
+
       // Day 5
       var dayFive = forecast.list[36];
       var dayTitleFive = document.querySelector(".date-title-five");
@@ -161,6 +185,11 @@ $(document).ready(function () {
       console.log(moment().add(5, "days").format("l"));
       console.log(dayFive.main.temp.toFixed(1));
       console.log(dayFive.main.humidity);
+
+      // Weather icon for day 5
+      var iconFive = forecast.list[36].weather[0].icon;
+      var iconFiveURL = "http://openweathermap.org/img/wn/" + iconFive + ".png";
+      document.querySelector(".card-icon-five").src = iconFiveURL;
     });
   }
 
@@ -175,7 +204,7 @@ $(document).ready(function () {
     var cityListEl = document.createElement("li");
     cityListEl.setAttribute("class", "list-group-item");
     cityListEl.textContent = cities[i];
-    cityList.append(cityListEl);
+    cityList.prepend(cityListEl);
   }
 
   // Call the two functions when the page opens

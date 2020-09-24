@@ -1,10 +1,6 @@
 # Weather Dashboard
 
-This is a weather dashboard application that will run in the browser and feature dynamically updated HTML and CSS.
-
-Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL.
-
-This application uses the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. This application uses `localStorage` to store any persistent data.
+This is a weather dashboard application that will run in the browser and feature dynamically updated HTML and CSS. Developers are commonly asked to retrieve data from another API and use it in their own code. This application uses the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. After typing in a city, this application will display the current temperature, humidity, wind speed, UV Index, and five-day forecast. The city the user entered will also be saved for when they revisit the page.
 
 ## User Story
 
@@ -36,19 +32,24 @@ THEN I am presented with the last searched city forecast
 
 The following image shows the web application's appearance and functionality:
 
-![weather dashboard demo](./assets/images/weather-dashboard-demo.png)
+![weather dashboard demo](./assets/images/weather-dashboard.png)
+![weather dashboard](https://github.com/Crowe828/weather-dashboard/blob/master/assets/images/weather-dashboard.png)
+
 
 ## Deployment
 
-Application: https://crowe828.github.io/weather-dashboard/
-GitHub Repo: https://github.com/Crowe828/weather-dashboard
+- Application: https://crowe828.github.io/weather-dashboard/
+- GitHub Repo: https://github.com/Crowe828/weather-dashboard
 
 ## Built With
 
 - HTML5
 - CSS3
+- Bootstrap
+- Font Awesome
 - JavaScript
 - jQuery
+- Moment.js
 - OpenWeather API
 
 ## Authors

@@ -28,7 +28,6 @@ $(document).ready(function () {
       url: queryURL,
       method: "GET",
     }).then(function (weather) {
-      console.log(weather);
 
       // Weather icon
       var icon = weather.weather[0].icon;
@@ -43,27 +42,22 @@ $(document).ready(function () {
 
       // Temperature
       var F = weather.main.temp.toFixed(1);
-      console.log(F);
       var tempToday = document.querySelector(".temp");
       tempToday.textContent = "Temperature: " + F + " °F";
 
       // Humidity
       var hum = weather.main.humidity;
-      console.log(hum);
       var humToday = document.querySelector(".humidity");
       humToday.textContent = "Humidity: " + hum + "%";
 
       // Wind
-      console.log(weather.wind);
       var windSpeed = weather.wind.speed.toFixed(1);
       var windCurrent = document.querySelector(".wind");
       windCurrent.textContent = "Wind speed: " + windSpeed + " MPH";
 
       // Lat/Lon for UV Index
       var uvLat = weather.coord.lat;
-      console.log(uvLat);
       var uvLon = weather.coord.lon;
-      console.log(uvLon);
 
       // URL for the UV index API
       var uvURL =
@@ -81,6 +75,30 @@ $(document).ready(function () {
       }).then(function (uv) {
         var uv = uv.value.toFixed(1);
         var uvIndex = document.querySelector(".uvIndex");
+
+        // Colors for UV Index
+        // Low
+        if (uv <= 2) {
+          uvIndex.style.backgroundColor = "green";
+        }
+        // Moderate
+        if (uv > 2 && uv <= 5) {
+          uvIndex.style.backgroundColor = "gold";
+        }
+        // High
+        if (uv > 5 && uv <= 7) {
+          uvIndex.style.backgroundColor = "orange";
+        }
+        // Very High
+        if (uv > 8 && uv <= 10) {
+          uvIndex.style.backgroundColor = "red";
+        }
+        // Extreme
+        if (uv > 10) {
+          uvIndex.style.backgroundColor = "purple";
+        }
+
+        // Display the color-coded UV Index
         uvIndex.textContent = "UV Index: " + uv;
       });
     });
@@ -99,10 +117,8 @@ $(document).ready(function () {
       url: forecastURL,
       method: "GET",
     }).then(function (forecast) {
-      console.log(forecast);
 
       // After user enters a city, the temperature and humidity will be shown for the next five days
-
       // Day 1
       var dayOne = forecast.list[4];
       var dayTitleOne = document.querySelector(".date-title-one");
@@ -111,10 +127,6 @@ $(document).ready(function () {
       dayTitleOne.textContent = moment().add(1, "day").format("l");
       dayTempOne.textContent = "Temp: " + dayOne.main.temp.toFixed(1) + " °F";
       dayHumOne.textContent = "Humidity: " + dayOne.main.humidity + "%";
-      console.log(moment().add(1, "day").format("l"));
-      console.log(dayOne.main.temp.toFixed(1));
-      console.log(dayOne.main.humidity);
-
       // Weather icon for day 1
       var iconOne = forecast.list[4].weather[0].icon;
       var iconOneURL = "http://openweathermap.org/img/wn/" + iconOne + ".png";
@@ -129,10 +141,6 @@ $(document).ready(function () {
       dayTempTwo.textContent = "Temp: " + dayTwo.main.temp.toFixed(1);
       +" °F";
       dayHumTwo.textContent = "Humidity: " + dayTwo.main.humidity + "%";
-      console.log(moment().add(2, "days").format("l"));
-      console.log(dayTwo.main.temp.toFixed(1));
-      console.log(dayTwo.main.humidity);
-
       // Weather icon for day 2
       var iconTwo = forecast.list[12].weather[0].icon;
       var iconTwoURL = "http://openweathermap.org/img/wn/" + iconTwo + ".png";
@@ -147,10 +155,6 @@ $(document).ready(function () {
       dayTempThree.textContent =
         "Temp: " + dayThree.main.temp.toFixed(1 + " °F");
       dayHumThree.textContent = "Humidity: " + dayThree.main.humidity + "%";
-      console.log(moment().add(3, "days").format("l"));
-      console.log(dayThree.main.temp.toFixed(1));
-      console.log(dayThree.main.humidity);
-
       // Weather icon for day 3
       var iconThree = forecast.list[20].weather[0].icon;
       var iconThreeURL =
@@ -165,10 +169,6 @@ $(document).ready(function () {
       dayTitleFour.textContent = moment().add(4, "days").format("l");
       dayTempFour.textContent = "Temp: " + dayFour.main.temp.toFixed(1) + " °F";
       dayHumFour.textContent = "Humidity: " + dayFour.main.humidity + "%";
-      console.log(moment().add(4, "days").format("l"));
-      console.log(dayFour.main.temp.toFixed(1));
-      console.log(dayFour.main.humidity);
-
       // Weather icon for day 4
       var iconFour = forecast.list[28].weather[0].icon;
       var iconFourURL = "http://openweathermap.org/img/wn/" + iconFour + ".png";
@@ -182,10 +182,6 @@ $(document).ready(function () {
       dayTitleFive.textContent = moment().add(5, "days").format("l");
       dayTempFive.textContent = "Temp: " + dayFive.main.temp.toFixed(1) + " °F";
       dayHumFive.textContent = "Humidity: " + dayFive.main.humidity + "%";
-      console.log(moment().add(5, "days").format("l"));
-      console.log(dayFive.main.temp.toFixed(1));
-      console.log(dayFive.main.humidity);
-
       // Weather icon for day 5
       var iconFive = forecast.list[36].weather[0].icon;
       var iconFiveURL = "http://openweathermap.org/img/wn/" + iconFive + ".png";

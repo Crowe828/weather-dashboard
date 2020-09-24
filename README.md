@@ -30,11 +30,9 @@ THEN I am presented with the last searched city forecast
 
 ## Mock-Up
 
-The following image shows the web application's appearance and functionality:
+- The following image shows the dashboard's appearance and functionality:
 
-![weather dashboard demo](./assets/images/weather-dashboard.png)
 ![weather dashboard](https://github.com/Crowe828/weather-dashboard/blob/master/assets/images/weather-dashboard.png)
-
 
 ## Deployment
 

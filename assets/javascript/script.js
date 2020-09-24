@@ -28,6 +28,7 @@ $(document).ready(function () {
       url: queryURL,
       method: "GET",
     }).then(function (weather) {
+      console.log(weather);
 
       // Weather icon
       var icon = weather.weather[0].icon;
@@ -117,7 +118,6 @@ $(document).ready(function () {
       url: forecastURL,
       method: "GET",
     }).then(function (forecast) {
-
       // After user enters a city, the temperature and humidity will be shown for the next five days
       // Day 1
       var dayOne = forecast.list[4];
@@ -194,6 +194,9 @@ $(document).ready(function () {
 
   // Retrieve cities from localStorage
   cities = JSON.parse(localStorage.getItem("weather"));
+  if (cities === null) {
+    cities = ["Orlando"];
+  }
 
   // For loop to create the list items
   for (var i = 0; i < cities.length; i++) {
@@ -204,6 +207,6 @@ $(document).ready(function () {
   }
 
   // Call the two functions when the page opens
-  currentWeather(cities.pop());
-  forecast(cities.pop());
+  currentWeather(cities);
+  forecast(cities);
 });
